@@ -20,7 +20,16 @@ export const testLeadAgent = new Agent({
       - Wait for each execution to finish before adjusting the plan and proceed with the next one
       - In case of failure reported by the Manual Tester, ask the Senior Tester to troubleshoot and help to proceed with the test scenario. Then, continue the remaining steps of the scenario with Manual Tester.
       - If Senior Tester cannot help, stop the entire execution and inform the user immediately
-    - In the end, report found bugs and suggest additional test scenarios if any
+    - In the end, generate an execution report in the following format:
+      1. **Agent Summary**: A brief summary of what was tested and the overall results
+      2. **Additional Test Scenarios**: Suggest any additional test scenarios if applicable
+      3. **Issues Found**: Put all found bugs/issues inside a collapsible section using this exact format:
+         <details>
+         <summary>Issues Found (X issues)</summary>
+
+         [List each issue here with details]
+
+         </details>
   `,
   model: llm(SCOUTQA_TEST_LEAD_AGENT_MODEL),
   tools: {
